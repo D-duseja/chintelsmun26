@@ -65,82 +65,8 @@ body {
   color: var(--text-primary);
   overflow-x: hidden;
   line-height: 1.6;
-  position: relative;
 }
 body.intro-active { overflow: hidden; }
-
-/* Ensure all page sections sit above global background */
-nav, section, footer, .modal-overlay {
-  position: relative;
-  z-index: 1;
-}
-
-/* ==========================================
-   GLOBAL ANIMATED BACKGROUND
-   ========================================== */
-#bg-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.global-ambient-glow {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background: 
-    radial-gradient(circle at 15% 20%, rgba(91, 74, 138, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 85% 75%, rgba(230, 184, 0, 0.1) 0%, transparent 55%),
-    radial-gradient(circle at 50% 50%, rgba(45, 31, 78, 0.25) 0%, transparent 70%);
-  animation: ambient-pulse 9s ease-in-out infinite alternate;
-}
-
-@keyframes ambient-pulse {
-  0% { opacity: 0.65; transform: scale(1); }
-  100% { opacity: 1; transform: scale(1.06); }
-}
-
-.global-rings {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.g-ring {
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid rgba(201, 187, 234, 0.08);
-  transform: translate(-50%, -50%);
-  animation: rotate-ring linear infinite;
-}
-
-.g-ring:nth-child(1) {
-  width: 600px;
-  height: 600px;
-  animation-duration: 45s;
-  border-color: rgba(230, 184, 0, 0.09);
-}
-.g-ring:nth-child(2) {
-  width: 950px;
-  height: 950px;
-  animation-duration: 70s;
-  animation-direction: reverse;
-  border-color: rgba(139, 114, 190, 0.07);
-}
-.g-ring:nth-child(3) {
-  width: 1300px;
-  height: 1300px;
-  animation-duration: 95s;
-  border-color: rgba(201, 187, 234, 0.05);
-}
 
 img { max-width: 100%; display: block; }
 a { text-decoration: none; color: inherit; }
