@@ -824,40 +824,50 @@ ul { list-style: none; }
 }
 .about-visual {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.about-emblem {
+.about-logo-wrapper {
+  position: relative;
   width: 100%;
   max-width: 420px;
-  margin: 0 auto;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(91,74,138,0.4), rgba(15,10,30,0.8));
-  border: 1px solid var(--lavender-soft);
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 20px;
+}
+.about-logo-glow {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(230, 184, 0, 0.18) 0%, rgba(91, 74, 138, 0.25) 50%, transparent 70%);
+  filter: blur(25px);
+  pointer-events: none;
+  animation: about-glow-pulse 4s ease-in-out infinite;
+}
+@keyframes about-glow-pulse {
+  0%, 100% { transform: scale(0.95); opacity: 0.6; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+.about-logo-img {
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  object-fit: contain;
   position: relative;
-  box-shadow: 0 0 80px rgba(91,74,138,0.3), inset 0 0 40px rgba(91,74,138,0.15);
+  z-index: 2;
+  filter: drop-shadow(0 0 35px rgba(230, 184, 0, 0.4)) drop-shadow(0 0 60px rgba(91, 74, 138, 0.5));
+  transition: transform var(--t-med) var(--ease), filter var(--t-med) var(--ease);
+  animation: float-logo 5s ease-in-out infinite;
 }
-.emblem-text {
-  font-family: var(--font-display);
-  text-align: center;
+.about-logo-img:hover {
+  transform: scale(1.04);
+  filter: drop-shadow(0 0 45px rgba(230, 184, 0, 0.6)) drop-shadow(0 0 75px rgba(139, 114, 190, 0.7));
 }
-.emblem-text .e-main {
-  font-size: 1.8rem;
-  font-weight: 900;
-  background: linear-gradient(135deg, var(--gold-shine), var(--gold-bright));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  display: block;
-  line-height: 1.2;
-}
-.emblem-text .e-sub {
-  font-size: 0.65rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--lavender-light);
+@keyframes float-logo {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 .theme-pillars {
