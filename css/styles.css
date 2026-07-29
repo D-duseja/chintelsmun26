@@ -1783,12 +1783,15 @@ ul { list-style: none; }
   width: 100%;
   max-width: 840px;
   max-height: 88vh;
+  max-height: calc(100dvh - 36px);
   overflow-y: auto;
-  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   transform: translateY(30px) scale(0.97);
   transition: transform var(--t-med) var(--ease);
   padding: 36px;
   position: relative;
+  box-sizing: border-box;
 }
 .modal-overlay.open .modal-box {
   transform: translateY(0) scale(1);
@@ -1840,9 +1843,9 @@ ul { list-style: none; }
 /* Quick Jump Section Bar */
 .modal-quick-nav {
   position: sticky;
-  top: -36px;
+  top: 0;
   z-index: 5;
-  background: rgba(45, 31, 78, 0.95);
+  background: rgba(45, 31, 78, 0.98);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   display: flex;
@@ -1853,6 +1856,7 @@ ul { list-style: none; }
   border-bottom: 1px solid rgba(201, 187, 234, 0.15);
   overflow-x: auto;
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 .modal-quick-link {
   padding: 6px 14px;
@@ -1868,6 +1872,7 @@ ul { list-style: none; }
   display: flex;
   align-items: center;
   gap: 6px;
+  cursor: pointer;
 }
 .modal-quick-link:hover {
   background: rgba(230, 184, 0, 0.18);
@@ -1964,8 +1969,15 @@ ul { list-style: none; }
 }
 
 @media (max-width: 600px) {
-  .modal-box { padding: 24px 20px; }
-  .modal-quick-nav { margin: 16px -20px 24px; padding: 10px 20px; }
+  .modal-box {
+    padding: 24px 20px;
+    max-height: calc(100dvh - 24px);
+    border-radius: 16px;
+  }
+  .modal-quick-nav {
+    margin: 14px -20px 20px;
+    padding: 10px 20px;
+  }
   .modal-footer-actions { flex-direction: column; align-items: stretch; }
   .modal-footer-actions .btn { width: 100%; justify-content: center; }
 }

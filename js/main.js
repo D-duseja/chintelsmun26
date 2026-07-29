@@ -461,10 +461,10 @@ function openModal(id) {
 
     <!-- Quick Jump Nav Bar -->
     <div class="modal-quick-nav">
-      <a href="#mod-sec-overview" class="modal-quick-link">🏛️ Overview</a>
-      <a href="#mod-sec-agenda" class="modal-quick-link">📋 Agenda</a>
-      <a href="#mod-sec-rops" class="modal-quick-link">⚖️ Rules of Procedure</a>
-      <a href="#mod-sec-board" class="modal-quick-link">👥 Executive Board</a>
+      <button type="button" data-target="mod-sec-overview" class="modal-quick-link">🏛️ Overview</button>
+      <button type="button" data-target="mod-sec-agenda" class="modal-quick-link">📋 Agenda</button>
+      <button type="button" data-target="mod-sec-rops" class="modal-quick-link">⚖️ Rules of Procedure</button>
+      <button type="button" data-target="mod-sec-board" class="modal-quick-link">👥 Executive Board</button>
     </div>
 
     <!-- Section 1: Overview & Mandate -->
@@ -557,11 +557,12 @@ function openModal(id) {
   quickLinks.forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      const targetId = link.getAttribute('href').substring(1);
+      const targetId = link.dataset.target;
       const targetSec = content.querySelector(`#${targetId}`);
       if (targetSec && modalBox) {
+        const targetTop = targetSec.offsetTop - content.offsetTop - 10;
         modalBox.scrollTo({
-          top: targetSec.offsetTop - 70,
+          top: Math.max(0, targetTop),
           behavior: 'smooth'
         });
       }
@@ -570,11 +571,13 @@ function openModal(id) {
 
   document.getElementById('committee-modal').classList.add('open');
   document.body.style.overflow = 'hidden';
+  document.documentElement.style.overflow = 'hidden';
 }
 
 function closeModal() {
   document.getElementById('committee-modal').classList.remove('open');
   document.body.style.overflow = '';
+  document.documentElement.style.overflow = '';
 }
 
 // ========== SCROLL REVEAL ==========
