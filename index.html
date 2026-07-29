@@ -16,29 +16,44 @@
   <meta property="og:description" content="Join us for the second edition of ChintelsMUN, August 16–17, 2026 at The Chintels School, Kanpur." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Orbitron:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
 
-<!-- ====== INTRO SPLASH ====== -->
+<!-- ── INTRO SEQUENCE ─────────────────────────────────────── -->
 <div id="intro-splash">
-  <div class="intro-bg-rings">
-    <div class="intro-ring"></div>
-    <div class="intro-ring"></div>
-    <div class="intro-ring"></div>
+  <canvas class="intro-particles-canvas" id="intro-particles-canvas"></canvas>
+  <div class="intro-scanlines-bg"></div>
+
+  <!-- Phase 1: Word Reveal ("ए-KTA", "अ-KHANDTA", "वि-VIDHTA") -->
+  <div id="intro-words-phase" class="intro-phase active">
+    <div id="intro-word"></div>
+    <div id="intro-gold-line"></div>
   </div>
-  <div class="intro-particles" id="intro-particles"></div>
-  <div class="intro-content">
-    <div class="intro-logo-wrap">
-      <img src="assets/logo.png" alt="ChintelsMUN'26" class="intro-logo" id="intro-logo" />
-      <div class="intro-logo-glow"></div>
+
+  <!-- Phase 2: Original Initial Logo Flash Reveal -->
+  <div id="intro-logo-phase" class="intro-phase">
+    <div class="intro-bg-rings">
+      <div class="intro-ring"></div>
+      <div class="intro-ring"></div>
+      <div class="intro-ring"></div>
     </div>
-    <div class="intro-text" id="intro-text">
-      <div class="intro-title">ChintelsMUN<span>'26</span></div>
-      <div class="intro-tagline">EKTA &nbsp;·&nbsp; AKHANDTA &nbsp;·&nbsp; VIVIDHTA</div>
-      <div class="intro-edition">The Second Edition &nbsp;|&nbsp; August 16–17, 2026</div>
+    <div class="intro-content">
+      <div class="intro-logo-wrap">
+        <img src="assets/logo.png" alt="ChintelsMUN'26" class="intro-logo" id="intro-logo" />
+        <div class="intro-logo-glow"></div>
+      </div>
+      <div class="intro-text" id="intro-text">
+        <div class="intro-title">ChintelsMUN<span>'26</span></div>
+        <div class="intro-tagline">EKTA &nbsp;&middot;&nbsp; AKHANDTA &nbsp;&middot;&nbsp; VIVIDHTA</div>
+        <div class="intro-edition">The Second Edition &nbsp;|&nbsp; August 16–17, 2026</div>
+      </div>
     </div>
   </div>
+
+  <!-- Skip button -->
+  <button id="intro-skip" onclick="skipIntroAll()">SKIP &rsaquo;</button>
 </div>
 
 <!-- ====== NAVBAR ====== -->
@@ -113,7 +128,7 @@
       </p>
       <div class="hero-actions">
         <a href="#committees" class="btn btn-primary" id="hero-explore-btn">Explore Committees</a>
-        <a href="#contact" class="btn btn-outline" id="hero-contact-btn">Get In Touch</a>
+        <a href="#contact" class="btn btn-outline" id="hero-contact-btn">Contact Us</a>
       </div>
     </div>
 
@@ -256,7 +271,7 @@
       <button class="filter-btn" data-filter="general" id="filter-general">UN Bodies</button>
       <button class="filter-btn" data-filter="crisis" id="filter-crisis">Crisis</button>
       <button class="filter-btn" data-filter="special" id="filter-special">Special / Regional</button>
-      <button class="filter-btn" data-filter="press" id="filter-press">Press Corps</button>
+      <button class="filter-btn" data-filter="press" id="filter-press">International Press Corps</button>
       <button class="filter-btn" data-filter="junior" id="filter-junior">Junior</button>
     </div>
 
@@ -327,7 +342,7 @@
         </div>
         <div class="timeline-item">
           <div class="tl-time">05:30 PM – 06:45 PM</div>
-          <div class="tl-event">✨ Socials — The Glow Gala</div>
+          <div class="tl-event">✨ Socials — The Glow Gala✨✨</div>
           <div class="tl-note">Exclusive delegate social evening — network, celebrate, connect</div>
         </div>
         <div class="timeline-item">

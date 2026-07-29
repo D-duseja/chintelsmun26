@@ -4,47 +4,173 @@
 // Secretariat, Schedule Tabs, Scroll Reveal, Modal
 // ============================================================
 
-/* -------- INTRO SPLASH -------- */
-(function initIntroSplash() {
-  const splash = document.getElementById('intro-splash');
-  if (!splash) return;
+// ── INTRO SEQUENCE (WORDS → LOGO FLASH → SITE) ─────────────────
+(function () {
+  // Lock scroll for intro duration
+  document.body.style.overflow = "hidden";
 
-  // Lock scroll while intro plays
-  document.body.classList.add('intro-active');
+  var splash = document.getElementById("intro-splash");
+  var wordsPhase = document.getElementById("intro-words-phase");
+  var logoPhase = document.getElementById("intro-logo-phase");
+  var welcomeWrap = document.getElementById("intro-welcome-wrap");
 
-  // Spawn glittering particles inside the splash
-  const pCont = document.getElementById('intro-particles');
-  if (pCont) {
-    const colors = [
-      'rgba(230,184,0,0.55)', 'rgba(255,215,0,0.4)',
-      'rgba(201,187,234,0.5)', 'rgba(139,114,190,0.5)',
-    ];
-    for (let i = 0; i < 50; i++) {
-      const p = document.createElement('div');
-      p.className = 'particle';
-      const sz  = Math.random() * 3.5 + 1;
-      const col = colors[Math.floor(Math.random() * colors.length)];
-      Object.assign(p.style, {
-        width:             `${sz}px`,
-        height:            `${sz}px`,
-        left:              `${Math.random() * 100}%`,
-        background:        col,
-        boxShadow:         `0 0 ${sz * 2}px ${col}`,
-        animationDelay:    `${Math.random() * 12}s`,
-        animationDuration: `${Math.random() * 10 + 8}s`,
+  // Single shared particles canvas
+  var pt = initParticles("intro-particles-canvas");
+
+  function initParticles(canvasId) {
+    var ic = document.getElementById(canvasId);
+    if (!ic) return { stop: function(){} };
+    var ictx = ic.getContext("2d");
+    var pts = [];
+    var aid;
+    function resize() { ic.width = window.innerWidth; ic.height = window.innerHeight; }
+    resize();
+    window.addEventListener("resize", resize);
+    for (var i = 0; i < 70; i++) {
+      pts.push({
+        x: Math.random()*window.innerWidth, y: Math.random()*window.innerHeight,
+        r: Math.random()*1.8+0.4, vx:(Math.random()-0.5)*0.4, vy:(Math.random()-0.5)*0.4,
+        alpha:Math.random()*0.5+0.15, color:Math.random()>0.5?"230,184,0":"139,114,190"
       });
-      pCont.appendChild(p);
+    }
+    function draw() {
+      ictx.clearRect(0,0,ic.width,ic.height);
+      for (var a=0;a<pts.length;a++) for (var b=a+1;b<pts.length;b++) {
+        var dx=pts[a].x-pts[b].x, dy=pts[a].y-pts[b].y, d=Math.sqrt(dx*dx+dy*dy);
+        if (d<120) { ictx.beginPath(); ictx.strokeStyle="rgba(139,114,190,"+(0.08*(1-d/120))+")";
+          ictx.lineWidth=0.5; ictx.moveTo(pts[a].x,pts[a].y); ictx.lineTo(pts[b].x,pts[b].y); ictx.stroke(); }
+      }
+      for (var j=0;j<pts.length;j++) {
+        var p=pts[j]; p.x+=p.vx; p.y+=p.vy;
+        if(p.x<0)p.x=ic.width; if(p.x>ic.width)p.x=0;
+        if(p.y<0)p.y=ic.height; if(p.y>ic.height)p.y=0;
+        ictx.beginPath(); ictx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ictx.fillStyle="rgba("+p.color+","+p.alpha+")"; ictx.fill();
+      }
+      aid = requestAnimationFrame(draw);
+    }
+    draw();
+    return { stop: function(){ cancelAnimationFrame(aid); } };
+  }
+
+  // ── Scramble decode ───────────────────────────────────────
+  var CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@!%&*";
+  function scrambleDecode(el, target, onComplete) {
+    el.classList.add("visible");
+    var frame = 0, total = target.length + 6;
+    var iv = setInterval(function(){
+      var out = "";
+      for (var i=0;i<target.length;i++) {
+        out += (i < frame-2) ? target[i] : CHARS[Math.floor(Math.random()*CHARS.length)];
+      }
+      el.textContent = out;
+      frame++;
+      if (frame > total) { clearInterval(iv); el.textContent = target; if(onComplete) onComplete(); }
+    }, 44);
+  }
+
+  // ── Gold line helpers ─────────────────────────────────────
+  function drawGoldLine(gl, cb) {
+    gl.classList.add("drawn");
+    setTimeout(function(){ if(cb) cb(); }, 440);
+  }
+  function eraseGoldLine(gl, cb) {
+    gl.classList.remove("drawn");
+    setTimeout(function(){ if(cb) cb(); }, 440);
+  }
+
+  var introAllDone = false;
+
+  // ── PHASE 1: Words Reveal ("ए-KTA", "अ-KHANDTA", "वि-VIDHTA") ────────
+  var wordEl   = document.getElementById("intro-word");
+  var goldLine = document.getElementById("intro-gold-line");
+
+  var words = ["ए-KTA", "अ-KHANDTA", "वि-VIDHTA"];
+  var idx = 0;
+
+  function nextWord() {
+    if (introAllDone) return;
+    if (idx >= words.length) {
+      // All words completed → smoothly transition to Logo Flash INSIDE single overlay
+      if (wordEl) wordEl.classList.remove("visible");
+      if (goldLine) goldLine.classList.remove("drawn");
+      setTimeout(function(){
+        startLogoFlashPhase();
+      }, 300);
+      return;
+    }
+
+    var w = words[idx++];
+    if (goldLine) goldLine.classList.remove("drawn");
+    if (wordEl) {
+      wordEl.classList.remove("visible");
+      wordEl.textContent = "";
+    }
+
+    setTimeout(function(){
+      if (wordEl) {
+        wordEl.textContent = w;
+        wordEl.classList.add("visible");
+      }
+      setTimeout(function(){
+        if (wordEl) {
+          scrambleDecode(wordEl, w, function(){
+            setTimeout(function(){
+              if (goldLine) {
+                drawGoldLine(goldLine, function(){
+                  setTimeout(function(){
+                    eraseGoldLine(goldLine, function(){
+                      setTimeout(nextWord, 140);
+                    });
+                  }, 220);
+                });
+              } else {
+                setTimeout(nextWord, 140);
+              }
+            }, 600);
+          });
+        }
+      }, 60);
+    }, idx === 1 ? 0 : 160);
+  }
+
+  setTimeout(nextWord, 200);
+
+  // ── PHASE 2: Original Initial Logo Flash Phase ─────────────
+  function startLogoFlashPhase() {
+    if (introAllDone) return;
+
+    if (wordsPhase) wordsPhase.classList.remove("active");
+    if (logoPhase) logoPhase.classList.add("active");
+
+    // Hold logo flash screen for 2.8s, then smoothly reveal website
+    setTimeout(function(){
+      finishAll();
+    }, 2800);
+  }
+
+  // ── Finish & reveal site ──────────────────────────────────
+  function finishAll() {
+    if (introAllDone) return;
+    introAllDone = true;
+    if (splash) {
+      splash.classList.add("splash-exit");
+      setTimeout(function(){
+        splash.style.display = "none";
+        document.body.style.overflow = "";
+        pt.stop();
+      }, 950);
+    } else {
+      document.body.style.overflow = "";
     }
   }
 
-  // Exit after 3.2s
-  setTimeout(() => {
-    splash.classList.add('splash-exit');
-    setTimeout(() => {
-      document.body.classList.remove('intro-active');
-      splash.style.display = 'none';
-    }, 850);
-  }, 3200);
+  // ── Skip handler ──────────────────────────────────────────
+  window.skipIntroAll = function() {
+    finishAll();
+  };
+
+  window.skipIntro = window.skipIntroAll;
 })();
 
 /* -------- MAIN INIT (after DOM ready) -------- */
@@ -187,7 +313,7 @@ function renderCommittees(filter) {
 
   const filtered = filter === 'all'
     ? COMMITTEES
-    : COMMITTEES.filter(c => c.type === filter);
+    : COMMITTEES.filter(c => Array.isArray(c.type) ? c.type.includes(filter) : c.type === filter);
 
   grid.innerHTML = '';
 
@@ -202,8 +328,10 @@ function renderCommittees(filter) {
       `<span class="board-member"><span class="role">${b.role}:</span> <strong>${b.name}</strong></span>`
     ).join('');
 
+    const primaryType = Array.isArray(c.type) ? c.type[0] : c.type;
+
     card.innerHTML = `
-      <span class="cc-badge ${c.type}">${c.typeLabel}</span>
+      <span class="cc-badge ${primaryType}">${c.typeLabel}</span>
       <div class="cc-abbr">${c.abbr}</div>
       <div class="cc-name">${c.name}</div>
       <div class="cc-agenda">${c.agenda.length > 180 ? c.agenda.substring(0, 180) + '…' : c.agenda}</div>
@@ -300,30 +428,145 @@ function openModal(id) {
   if (!c) return;
 
   const content = document.getElementById('modal-content');
+  const primaryType = Array.isArray(c.type) ? c.type[0] : c.type;
+
+  // Board members html
   const boardHtml = c.board.map(b =>
-    `<div class="board-member" style="padding: 8px 14px; margin: 4px; font-size: 0.82rem; display: inline-flex; gap: 8px;">
-      <span style="color: var(--text-muted);">${b.role}:</span>
-      <strong style="color: var(--white);">${b.name}</strong>
+    `<div style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 6px;">
+      <span style="color: var(--text-muted); font-weight: 500;">${b.role}:</span>
+      <strong style="color: var(--gold-shine); font-weight: 700;">${b.name}</strong>
     </div>`
   ).join('');
 
+  // Agenda sub-pillars html
+  const pillarsHtml = (c.agendaDetail || []).map((pillar) => `
+    <div class="agenda-pillar-item">
+      ${pillar}
+    </div>
+  `).join('');
+
   content.innerHTML = `
-    <div style="margin-bottom: 8px;">
-      <span class="cc-badge ${c.type}" style="margin-bottom: 16px; display: inline-block;">${c.typeLabel}</span>
-    </div>
-    <div style="font-family: var(--font-display); font-size: 2rem; font-weight: 900; background: linear-gradient(135deg, #FFD700, #E6B800); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 6px;">${c.abbr}</div>
-    <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px; line-height: 1.5;">${c.name}</div>
-    
-    <div style="margin-bottom: 20px;">
-      <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold-bright); margin-bottom: 10px; font-weight: 700;">📋 Agenda</div>
-      <div style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; padding: 16px; background: rgba(0,0,0,0.25); border-radius: 12px; border-left: 3px solid var(--gold-bright);">${c.agenda}</div>
+    <!-- Header Meta & Symmetrical Badges -->
+    <div class="modal-header-meta">
+      <span class="cc-badge ${primaryType}">${c.typeLabel}</span>
+      <span class="modal-level-pill">🎯 ${c.level || 'All Experience Levels'}</span>
     </div>
     
-    <div>
-      <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold-bright); margin-bottom: 12px; font-weight: 700;">👥 Executive Board</div>
-      <div style="display: flex; flex-wrap: wrap; gap: 8px;">${boardHtml}</div>
+    <div style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 900; background: linear-gradient(135deg, #FFD700, #E6B800); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 4px; line-height: 1.1;">
+      ${c.abbr}
+    </div>
+    <div style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 6px; line-height: 1.4;">
+      ${c.name}
+    </div>
+
+    <!-- Quick Jump Nav Bar -->
+    <div class="modal-quick-nav">
+      <a href="#mod-sec-overview" class="modal-quick-link">🏛️ Overview</a>
+      <a href="#mod-sec-agenda" class="modal-quick-link">📋 Agenda</a>
+      <a href="#mod-sec-rops" class="modal-quick-link">⚖️ Rules of Procedure</a>
+      <a href="#mod-sec-board" class="modal-quick-link">👥 Executive Board</a>
+    </div>
+
+    <!-- Section 1: Overview & Mandate -->
+    <div class="modal-section" id="mod-sec-overview">
+      <div class="modal-section-heading">🏛️ Overview & Mandate</div>
+      <div style="font-size: 0.94rem; color: var(--text-primary); line-height: 1.75; padding-left: 16px; border-left: 3px solid var(--gold-bright); margin-bottom: 16px;">
+        ${c.about || c.name + ' is a key committee featured at ChintelsMUN\'26.'}
+      </div>
+
+      <div style="display: flex; gap: 24px; flex-wrap: wrap; margin-top: 14px;">
+        <div>
+          <span style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; display: block;">Format</span>
+          <span style="font-size: 0.88rem; font-weight: 700; color: var(--white);">${c.typeLabel}</span>
+        </div>
+        <div>
+          <span style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; display: block;">Target Experience</span>
+          <span style="font-size: 0.88rem; font-weight: 700; color: var(--gold-bright);">${c.level || 'All Levels'}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: Agenda & Focus Areas -->
+    <div class="modal-section" id="mod-sec-agenda">
+      <div class="modal-section-heading">📋 Primary Agenda</div>
+      <div style="font-size: 0.94rem; color: var(--text-primary); line-height: 1.75; padding-left: 16px; border-left: 3px solid var(--gold-bright); margin-bottom: 20px;">
+        ${c.agenda}
+      </div>
+
+      <div style="font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--gold-bright); margin-bottom: 12px; font-weight: 700;">
+        Key Research Pillars & Focus Areas
+      </div>
+      <div class="agenda-pillars-list">
+        ${pillarsHtml || '<p style="font-size: 0.88rem; color: var(--text-muted);">Detailed background guide will be made available to registered delegates.</p>'}
+      </div>
+    </div>
+
+    <!-- Section 3: Rules of Procedure (ROPs) Bullet List -->
+    <div class="modal-section" id="mod-sec-rops">
+      <div class="modal-section-heading">⚖️ Rules of Procedure (ROPs)</div>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">
+        Key guidelines, debate style, motion types, and voting rules for ${c.abbr}:
+      </p>
+
+      <ul class="rop-bullet-list">
+        <li>
+          <span class="rop-bullet-label">Debate Format:</span>
+          <span class="rop-bullet-text">${c.rops ? c.rops.format : 'Standard MUN Rules of Procedure (General Speakers List, Moderated and Unmoderated Caucuses).'}</span>
+        </li>
+        <li>
+          <span class="rop-bullet-label">Voting Rules & Thresholds:</span>
+          <span class="rop-bullet-text">${c.rops ? c.rops.voting : 'Simple Majority (50% + 1) for procedural matters; 2/3 Majority for substantive draft resolutions.'}</span>
+        </li>
+        <li>
+          <span class="rop-bullet-label">Primary Motions:</span>
+          <span class="rop-bullet-text">${c.rops ? c.rops.motions : 'Motion to Open GSL, Motion for Moderated Caucus, Motion for Unmoderated Caucus, Motion to Introduce Resolution.'}</span>
+        </li>
+        <li>
+          <span class="rop-bullet-label">Documentation & Outcomes:</span>
+          <span class="rop-bullet-text">${c.rops ? c.rops.documentation : 'Working Papers, Draft Resolutions, Amendments, and Joint Communiqués.'}</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Section 4: Executive Board -->
+    <div class="modal-section" id="mod-sec-board">
+      <div class="modal-section-heading">👥 Executive Board</div>
+      <div style="margin-bottom: 16px;">
+        ${boardHtml}
+      </div>
+
+      <p style="font-size: 0.86rem; color: var(--text-secondary); line-height: 1.65; padding-left: 14px; border-left: 2px solid var(--gold-bright);">
+        <strong style="color: var(--gold-bright);">EB Advice:</strong> Delegates are encouraged to thoroughly research their assigned foreign policy / portfolio, prepare position statements, and come ready for active caucus negotiations.
+      </p>
+    </div>
+
+    <!-- Modal Footer Actions -->
+    <div class="modal-footer-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQqLwWkjAQdmaqRqIgVZkNtDtDPHHWxP5byJvFpDgPiorR-g/viewform" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 10px 24px; font-size: 0.8rem;">
+        Register for ${c.abbr} →
+      </a>
+      <button class="btn btn-ghost" style="padding: 10px 22px; font-size: 0.8rem;" onclick="closeModal()">
+        Close View
+      </button>
     </div>
   `;
+
+  // Attach quick jump links smooth scroll behavior inside the modal-box
+  const modalBox = document.querySelector('.modal-box');
+  const quickLinks = content.querySelectorAll('.modal-quick-link');
+  quickLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href').substring(1);
+      const targetSec = content.querySelector(`#${targetId}`);
+      if (targetSec && modalBox) {
+        modalBox.scrollTo({
+          top: targetSec.offsetTop - 70,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
 
   document.getElementById('committee-modal').classList.add('open');
   document.body.style.overflow = 'hidden';
