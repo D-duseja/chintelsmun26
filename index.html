@@ -1,608 +1,634 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ChintelsMUN'26 | The Second Edition | August 16–17, 2026</title>
-  
+
   <!-- Favicon / Tab Icon -->
   <link rel="icon" type="image/png" href="assets/logo.png" />
   <link rel="shortcut icon" type="image/png" href="assets/logo.png" />
   <link rel="apple-touch-icon" href="assets/logo.png" />
-  
-  <meta name="description" content="ChintelsMUN 2026 — The Second Edition of Model United Nations by The Chintels School, Kanpur. August 16–17 | 11 Committees | Theme: Ekta, Akhandta, Vividhta." />
-  <meta name="keywords" content="ChintelsMUN, MUN 2026, Model United Nations, Kanpur, The Chintels School, UNSC, ECOSOC, UNHRC" />
+
+  <meta name="description"
+    content="ChintelsMUN 2026 — The Second Edition of Model United Nations by The Chintels School, Kanpur. August 16–17 | 11 Committees | Theme: Ekta, Akhandta, Vividhta." />
+  <meta name="keywords"
+    content="ChintelsMUN, MUN 2026, Model United Nations, Kanpur, The Chintels School, UNSC, ECOSOC, UNHRC" />
   <meta property="og:title" content="ChintelsMUN'26 — Ekta | Akhandta | Vividhta" />
-  <meta property="og:description" content="Join us for the second edition of ChintelsMUN, August 16–17, 2026 at The Chintels School, Kanpur." />
+  <meta property="og:description"
+    content="Join us for the second edition of ChintelsMUN, August 16–17, 2026 at The Chintels School, Kanpur." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Orbitron:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Orbitron:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
+
 <body>
 
-<!-- ── INTRO SEQUENCE ─────────────────────────────────────── -->
-<div id="intro-splash">
-  <canvas class="intro-particles-canvas" id="intro-particles-canvas"></canvas>
-  <div class="intro-scanlines-bg"></div>
+  <!-- ── INTRO SEQUENCE ─────────────────────────────────────── -->
+  <div id="intro-splash">
+    <canvas class="intro-particles-canvas" id="intro-particles-canvas"></canvas>
+    <div class="intro-scanlines-bg"></div>
 
-  <!-- Phase 1: Word Reveal ("ए-KTA", "अ-KHANDTA", "वि-VIDHTA") -->
-  <div id="intro-words-phase" class="intro-phase active">
-    <div id="intro-word"></div>
-    <div id="intro-gold-line"></div>
-  </div>
-
-  <!-- Phase 2: Original Initial Logo Flash Reveal -->
-  <div id="intro-logo-phase" class="intro-phase">
-    <div class="intro-bg-rings">
-      <div class="intro-ring"></div>
-      <div class="intro-ring"></div>
-      <div class="intro-ring"></div>
-    </div>
-    <div class="intro-content">
-      <div class="intro-logo-wrap">
-        <img src="assets/logo.png" alt="ChintelsMUN'26" class="intro-logo" id="intro-logo" />
-        <div class="intro-logo-glow"></div>
-      </div>
-      <div class="intro-text" id="intro-text">
-        <div class="intro-title">ChintelsMUN<span>'26</span></div>
-        <div class="intro-tagline">EKTA &nbsp;&middot;&nbsp; AKHANDTA &nbsp;&middot;&nbsp; VIVIDHTA</div>
-        <div class="intro-edition">The Second Edition &nbsp;|&nbsp; August 16–17, 2026</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Skip button -->
-  <button id="intro-skip" onclick="skipIntroAll()">SKIP &rsaquo;</button>
-</div>
-
-<!-- ====== NAVBAR ====== -->
-<nav id="navbar">
-  <a href="#hero" class="nav-logo">
-    <img src="assets/logo.png" alt="ChintelsMUN'26 Logo" class="nav-logo-img" />
-    <span class="logo-text">
-      <span class="logo-main">ChintelsMUN'26</span>
-      <span class="logo-sub">The Second Edition</span>
-    </span>
-  </a>
-  <div class="nav-links">
-    <a href="#about" id="nav-about">About</a>
-    <a href="#committees" id="nav-committees">Committees</a>
-    <a href="#secretariat" id="nav-secretariat">Secretariat</a>
-    <a href="#schedule" id="nav-schedule">Schedule</a>
-    <a href="#registration" id="nav-registration">Register</a>
-    <a href="#venue" id="nav-venue">Venue</a>
-    <a href="#contact" id="nav-contact">Contact</a>
-  </div>
-  <div class="nav-cta">
-    <a href="assets/brochure.pdf" download="ChintelsMUN26-Brochure.pdf" class="btn btn-outline" id="nav-brochure-btn">⬇ Brochure</a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQqLwWkjAQdmaqRqIgVZkNtDtDPHHWxP5byJvFpDgPiorR-g/viewform" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="nav-register-btn">Register Now</a>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobile-menu">
-  <a href="#about" class="mm-link">About</a>
-  <a href="#committees" class="mm-link">Committees</a>
-  <a href="#secretariat" class="mm-link">Secretariat</a>
-  <a href="#schedule" class="mm-link">Schedule</a>
-  <a href="#registration" class="mm-link">Register</a>
-  <a href="#venue" class="mm-link">Venue</a>
-  <a href="#contact" class="mm-link">Contact</a>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQqLwWkjAQdmaqRqIgVZkNtDtDPHHWxP5byJvFpDgPiorR-g/viewform" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="mobile-register-btn">Register Now</a>
-</div>
-
-<!-- ====== HERO ====== -->
-<section id="hero">
-  <div class="hero-bg"></div>
-  <div class="particles" id="particles"></div>
-  <div class="hero-rings">
-    <div class="hero-ring"></div>
-    <div class="hero-ring"></div>
-    <div class="hero-ring"></div>
-  </div>
-
-  <div class="hero-content">
-    <!-- Left: Text -->
-    <div class="hero-left">
-      <div class="hero-badge">
-        <span class="dot"></span>
-        The Second Edition &nbsp;·&nbsp; Kanpur 2026
-      </div>
-      <h1 class="hero-title">
-        <span class="line-gold">CHINTELS</span><br>
-        <span class="line-white">MUN '26</span>
-      </h1>
-      <div class="hero-theme">
-        <span class="theme-pill">Ekta</span>
-        <span class="theme-pill">Akhandta</span>
-        <span class="theme-pill">Vividhta</span>
-      </div>
-      <p class="hero-desc">
-        Elevating the standards of diplomacy, debate, and leadership. 
-        Where young minds deliberate on the world's most pressing challenges 
-        and craft solutions that matter.
-      </p>
-      <div class="hero-actions">
-        <a href="#committees" class="btn btn-primary" id="hero-explore-btn">Explore Committees</a>
-        <a href="#contact" class="btn btn-outline" id="hero-contact-btn">Contact Us</a>
-      </div>
+    <!-- Phase 1: Word Reveal ("ए-KTA", "अ-KHANDTA", "वि-VIDHTA") -->
+    <div id="intro-words-phase" class="intro-phase active">
+      <div id="intro-word"></div>
+      <div id="intro-gold-line"></div>
     </div>
 
-    <!-- Right: Countdown + Info -->
-    <div class="hero-right">
-      <div class="hero-countdown">
-        <p class="countdown-label">Conference begins in</p>
-        <div class="countdown-grid">
-          <div class="countdown-unit">
-            <span class="countdown-num" id="cd-days">00</span>
-            <span class="countdown-lbl">Days</span>
-          </div>
-          <div class="countdown-unit">
-            <span class="countdown-num" id="cd-hours">00</span>
-            <span class="countdown-lbl">Hours</span>
-          </div>
-          <div class="countdown-unit">
-            <span class="countdown-num" id="cd-mins">00</span>
-            <span class="countdown-lbl">Minutes</span>
-          </div>
-          <div class="countdown-unit">
-            <span class="countdown-num" id="cd-secs">00</span>
-            <span class="countdown-lbl">Seconds</span>
-          </div>
-        </div>
+    <!-- Phase 2: Original Initial Logo Flash Reveal -->
+    <div id="intro-logo-phase" class="intro-phase">
+      <div class="intro-bg-rings">
+        <div class="intro-ring"></div>
+        <div class="intro-ring"></div>
+        <div class="intro-ring"></div>
       </div>
-
-      <div class="hero-info-cards">
-        <div class="info-card">
-          <div class="ic-icon">📅</div>
-          <div>
-            <div class="ic-label">Date</div>
-            <div class="ic-val">Aug 16–17, 2026</div>
-          </div>
+      <div class="intro-content">
+        <div class="intro-logo-wrap">
+          <img src="assets/logo.png" alt="ChintelsMUN'26" class="intro-logo" id="intro-logo" />
+          <div class="intro-logo-glow"></div>
         </div>
-        <div class="info-card">
-          <div class="ic-icon">🏛️</div>
-          <div>
-            <div class="ic-label">Venue</div>
-            <div class="ic-val">Chintels, Kalyanpur</div>
-          </div>
-        </div>
-        <div class="info-card">
-          <div class="ic-icon">🌐</div>
-          <div>
-            <div class="ic-label">Committees</div>
-            <div class="ic-val">11 Committees</div>
-          </div>
-        </div>
-        <div class="info-card">
-          <div class="ic-icon">🎭</div>
-          <div>
-            <div class="ic-label">Theme</div>
-            <div class="ic-val">Unity · Integrity · Diversity</div>
-          </div>
+        <div class="intro-text" id="intro-text">
+          <div class="intro-title">ChintelsMUN<span>'26</span></div>
+          <div class="intro-tagline">EKTA &nbsp;&middot;&nbsp; AKHANDTA &nbsp;&middot;&nbsp; VIVIDHTA</div>
+          <div class="intro-edition">The Second Edition &nbsp;|&nbsp; August 16–17, 2026</div>
         </div>
       </div>
     </div>
+
+    <!-- Skip button -->
+    <button id="intro-skip" onclick="skipIntroAll()">SKIP &rsaquo;</button>
   </div>
 
-  <div class="scroll-hint">
-    <div class="mouse"></div>
-    <span>Scroll</span>
-  </div>
-</section>
+  <!-- ====== NAVBAR ====== -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">
+      <img src="assets/logo.png" alt="ChintelsMUN'26 Logo" class="nav-logo-img" />
+      <span class="logo-text">
+        <span class="logo-main">ChintelsMUN'26</span>
+        <span class="logo-sub">The Second Edition</span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="#about" id="nav-about">About</a>
+      <a href="#committees" id="nav-committees">Committees</a>
+      <a href="#secretariat" id="nav-secretariat">Secretariat</a>
+      <a href="#schedule" id="nav-schedule">Schedule</a>
+      <a href="#registration" id="nav-registration">Register</a>
+      <a href="#venue" id="nav-venue">Venue</a>
+      <a href="#contact" id="nav-contact">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a href="assets/brochure.pdf" download="ChintelsMUN26-Brochure.pdf" class="btn btn-outline"
+        id="nav-brochure-btn">⬇ Brochure</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQqLwWkjAQdmaqRqIgVZkNtDtDPHHWxP5byJvFpDgPiorR-g/viewform"
+        target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="nav-register-btn">Register Now</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
 
-<!-- ====== STATS ====== -->
-<section id="stats">
-  <div class="stats-grid">
-    <div class="stat-item">
-      <div class="stat-num" data-target="11">11</div>
-      <div class="stat-label">Committees</div>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item">
-      <div class="stat-num" data-target="2">2nd</div>
-      <div class="stat-label">Edition</div>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item">
-      <div class="stat-num" data-target="2">2</div>
-      <div class="stat-label">Intense Days</div>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item">
-      <div class="stat-num">∞</div>
-      <div class="stat-label">Possibilities</div>
-    </div>
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about" class="mm-link">About</a>
+    <a href="#committees" class="mm-link">Committees</a>
+    <a href="#secretariat" class="mm-link">Secretariat</a>
+    <a href="#schedule" class="mm-link">Schedule</a>
+    <a href="#registration" class="mm-link">Register</a>
+    <a href="#venue" class="mm-link">Venue</a>
+    <a href="#contact" class="mm-link">Contact</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQqLwWkjAQdmaqRqIgVZkNtDtDPHHWxP5byJvFpDgPiorR-g/viewform"
+      target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="mobile-register-btn">Register Now</a>
   </div>
-</section>
 
-<!-- ====== ABOUT ====== -->
-<section id="about">
-  <div class="about-grid">
-    <div class="about-visual reveal">
-      <div class="about-logo-wrapper">
-        <div class="about-logo-glow"></div>
-        <img src="assets/logo.png" alt="ChintelsMUN'26 Logo" class="about-logo-img" />
+  <!-- ====== HERO ====== -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="particles" id="particles"></div>
+    <div class="hero-rings">
+      <div class="hero-ring"></div>
+      <div class="hero-ring"></div>
+      <div class="hero-ring"></div>
+    </div>
+
+    <div class="hero-content">
+      <!-- Left: Text -->
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          The Second Edition &nbsp;·&nbsp; Kanpur 2026
+        </div>
+        <h1 class="hero-title">
+          <span class="line-gold">CHINTELS</span><br>
+          <span class="line-white">MUN '26</span>
+        </h1>
+        <div class="hero-theme">
+          <span class="theme-pill">Ekta</span>
+          <span class="theme-pill">Akhandta</span>
+          <span class="theme-pill">Vividhta</span>
+        </div>
+        <p class="hero-desc">
+          Elevating the standards of diplomacy, debate, and leadership.
+          Where young minds deliberate on the world's most pressing challenges
+          and craft solutions that matter.
+        </p>
+        <div class="hero-actions">
+          <a href="#committees" class="btn btn-primary" id="hero-explore-btn">Explore Committees</a>
+          <a href="#contact" class="btn btn-outline" id="hero-contact-btn">Contact Us</a>
+        </div>
+      </div>
+
+      <!-- Right: Countdown + Info -->
+      <div class="hero-right">
+        <div class="hero-countdown">
+          <p class="countdown-label">Conference begins in</p>
+          <div class="countdown-grid">
+            <div class="countdown-unit">
+              <span class="countdown-num" id="cd-days">00</span>
+              <span class="countdown-lbl">Days</span>
+            </div>
+            <div class="countdown-unit">
+              <span class="countdown-num" id="cd-hours">00</span>
+              <span class="countdown-lbl">Hours</span>
+            </div>
+            <div class="countdown-unit">
+              <span class="countdown-num" id="cd-mins">00</span>
+              <span class="countdown-lbl">Minutes</span>
+            </div>
+            <div class="countdown-unit">
+              <span class="countdown-num" id="cd-secs">00</span>
+              <span class="countdown-lbl">Seconds</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-info-cards">
+          <div class="info-card">
+            <div class="ic-icon">📅</div>
+            <div>
+              <div class="ic-label">Date</div>
+              <div class="ic-val">Aug 16–17, 2026</div>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="ic-icon">🏛️</div>
+            <div>
+              <div class="ic-label">Venue</div>
+              <div class="ic-val">Chintels, Kalyanpur</div>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="ic-icon">🌐</div>
+            <div>
+              <div class="ic-label">Committees</div>
+              <div class="ic-val">11 Committees</div>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="ic-icon">🎭</div>
+            <div>
+              <div class="ic-label">Theme</div>
+              <div class="ic-val">Unity · Integrity · Diversity</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="about-text reveal reveal-delay-1">
-      <div class="section-label">About the Conference</div>
-      <h2 class="section-title">Where Diplomacy Meets Excellence</h2>
-      <p class="section-sub" style="margin-bottom: 32px;">
-        Organised by The Chintels School, Ratanlal Nagar, Kanpur, the Second Edition of 
-        ChintelsMUN is an elite proving ground for aspiring diplomats. 
-        More than just a conference — a celebration of diplomacy, critical thinking, and global citizenship.
-      </p>
+    <div class="scroll-hint">
+      <div class="mouse"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
 
-      <div class="theme-pillars">
-        <div class="pillar-card glass-card reveal reveal-delay-2">
-          <div class="pillar-name">| EKTA | Unity</div>
-          <p class="pillar-desc">Meaningful progress is achieved through collaboration, not confrontation. By fostering dialogue, empathy, and collective action, unity becomes the driving force behind lasting peace and global cooperation.</p>
+  <!-- ====== STATS ====== -->
+  <section id="stats">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-num" data-target="11">11</div>
+        <div class="stat-label">Committees</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="2">2nd</div>
+        <div class="stat-label">Edition</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="2">2</div>
+        <div class="stat-label">Intense Days</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Possibilities</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== ABOUT ====== -->
+  <section id="about">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-logo-wrapper">
+          <div class="about-logo-glow"></div>
+          <img src="assets/logo.png" alt="ChintelsMUN'26 Logo" class="about-logo-img" />
         </div>
-        <div class="pillar-card glass-card reveal reveal-delay-3">
-          <div class="pillar-name">| AKHANDTA | Integrity</div>
-          <p class="pillar-desc">In an era of uncertainty and misinformation, Akhandta stands as the foundation of ethical leadership and principled diplomacy. It inspires nations to uphold accountability and pursue justice with unwavering conviction.</p>
-        </div>
-        <div class="pillar-card glass-card reveal reveal-delay-4">
-          <div class="pillar-name">| VIVIDHTA | Diversity</div>
-          <p class="pillar-desc">Vividhta reminds us that diversity is our greatest strength. By embracing different cultures, perspectives, and identities, we foster mutual respect, inclusivity, and lasting unity.</p>
+      </div>
+
+      <div class="about-text reveal reveal-delay-1">
+        <div class="section-label">About the Conference</div>
+        <h2 class="section-title">Where Diplomacy Meets Excellence</h2>
+        <p class="section-sub" style="margin-bottom: 32px;">
+          Organised by The Chintels School, Ratanlal Nagar, Kanpur, the Second Edition of
+          ChintelsMUN is an elite proving ground for aspiring diplomats.
+          More than just a conference — a celebration of diplomacy, critical thinking, and global citizenship.
+        </p>
+
+        <div class="theme-pillars">
+          <div class="pillar-card glass-card reveal reveal-delay-2">
+            <div class="pillar-name">| EKTA | Unity</div>
+            <p class="pillar-desc">Meaningful progress is achieved through collaboration, not confrontation. By
+              fostering dialogue, empathy, and collective action, unity becomes the driving force behind lasting peace
+              and global cooperation.</p>
+          </div>
+          <div class="pillar-card glass-card reveal reveal-delay-3">
+            <div class="pillar-name">| AKHANDTA | Integrity</div>
+            <p class="pillar-desc">In an era of uncertainty and misinformation, Akhandta stands as the foundation of
+              ethical leadership and principled diplomacy. It inspires nations to uphold accountability and pursue
+              justice with unwavering conviction.</p>
+          </div>
+          <div class="pillar-card glass-card reveal reveal-delay-4">
+            <div class="pillar-name">| VIVIDHTA | Diversity</div>
+            <p class="pillar-desc">Vividhta reminds us that diversity is our greatest strength. By embracing different
+              cultures, perspectives, and identities, we foster mutual respect, inclusivity, and lasting unity.</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ====== COMMITTEES ====== -->
-<section id="committees">
-  <div class="committees-wrap">
+  <!-- ====== COMMITTEES ====== -->
+  <section id="committees">
+    <div class="committees-wrap">
+      <div class="section-header reveal">
+        <div class="section-label">Committees & Agendas</div>
+        <h2 class="section-title">Explore All 11 Committees</h2>
+        <p class="section-sub">From the United Nations Security Council to the International Press — find the arena
+          where your voice belongs.</p>
+      </div>
+
+      <div class="committee-filters reveal">
+        <button class="filter-btn active" data-filter="all" id="filter-all">All Committees</button>
+        <button class="filter-btn" data-filter="general" id="filter-general">UN Bodies</button>
+        <button class="filter-btn" data-filter="crisis" id="filter-crisis">Crisis</button>
+        <button class="filter-btn" data-filter="special" id="filter-special">Special / Regional</button>
+        <button class="filter-btn" data-filter="press" id="filter-press">International Press Corps</button>
+        <button class="filter-btn" data-filter="junior" id="filter-junior">Junior</button>
+      </div>
+
+      <div class="committees-grid" id="committees-grid">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SECRETARIAT ====== -->
+  <section id="secretariat">
     <div class="section-header reveal">
-      <div class="section-label">Committees & Agendas</div>
-      <h2 class="section-title">Explore All 11 Committees</h2>
-      <p class="section-sub">From the United Nations Security Council to the International Press — find the arena where your voice belongs.</p>
+      <div class="section-label">Meet the Team</div>
+      <h2 class="section-title">The Secretariat</h2>
+      <p class="section-sub">The dedicated team behind ChintelsMUN'26 — shaping an experience of intellectual excellence
+        and diplomatic rigor.</p>
     </div>
 
-    <div class="committee-filters reveal">
-      <button class="filter-btn active" data-filter="all" id="filter-all">All Committees</button>
-      <button class="filter-btn" data-filter="general" id="filter-general">UN Bodies</button>
-      <button class="filter-btn" data-filter="crisis" id="filter-crisis">Crisis</button>
-      <button class="filter-btn" data-filter="special" id="filter-special">Special / Regional</button>
-      <button class="filter-btn" data-filter="press" id="filter-press">International Press Corps</button>
-      <button class="filter-btn" data-filter="junior" id="filter-junior">Junior</button>
-    </div>
-
-    <div class="committees-grid" id="committees-grid">
+    <div class="secretariat-grid" id="secretariat-grid">
       <!-- Populated by JS -->
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ====== SECRETARIAT ====== -->
-<section id="secretariat">
-  <div class="section-header reveal">
-    <div class="section-label">Meet the Team</div>
-    <h2 class="section-title">The Secretariat</h2>
-    <p class="section-sub">The dedicated team behind ChintelsMUN'26 — shaping an experience of intellectual excellence and diplomatic rigor.</p>
-  </div>
+  <!-- ====== SCHEDULE ====== -->
+  <section id="schedule">
+    <div class="schedule-wrap">
+      <div class="section-header reveal">
+        <div class="section-label">Conference Itinerary</div>
+        <h2 class="section-title">Tentative Schedule</h2>
+        <p class="section-sub">Two action-packed days of debate, diplomacy, and diplomacy at The Chintels School,
+          Kalyanpur.</p>
+      </div>
 
-  <div class="secretariat-grid" id="secretariat-grid">
-    <!-- Populated by JS -->
-  </div>
-</section>
+      <div class="day-tabs">
+        <button class="day-tab active" data-day="1" id="tab-day1">Day 1 — Aug 16</button>
+        <button class="day-tab" data-day="2" id="tab-day2">Day 2 — Aug 17</button>
+      </div>
 
-<!-- ====== SCHEDULE ====== -->
-<section id="schedule">
-  <div class="schedule-wrap">
+      <!-- Day 1 -->
+      <div class="day-panel active" id="day-panel-1">
+        <div class="day-header">
+          <h3>Day 1 — Sunday, 16th August 2026</h3>
+          <p>Dress Code: Western Formals</p>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="tl-time">08:00 AM – 09:00 AM</div>
+            <div class="tl-event">Breakfast & Registrations</div>
+            <div class="tl-note">Check-in, credential verification and networking</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-time">09:00 AM – 10:45 AM</div>
+            <div class="tl-event">Opening Ceremony</div>
+            <div class="tl-note">Welcome addresses from the Secretariat, Principal, and Chairperson</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-time">11:20 AM – 01:30 PM</div>
+            <div class="tl-event">Committee Session 1</div>
+            <div class="tl-note">Roll call, general speakers list, opening statements</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-time">01:30 PM – 02:30 PM</div>
+            <div class="tl-event">Lunch</div>
+            <div class="tl-note">Networking opportunity for delegates</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-time">02:30 PM – 05:30 PM</div>
+            <div class="tl-event">Committee Session 2</div>
+            <div class="tl-note">Moderated & unmoderated caucuses, working paper drafting</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-time">05:30 PM – 06:45 PM</div>
+            <div class="tl-event">✨ Socials — The Glow Gala</div>
+            <div class="tl-note">Exclusive delegate social evening — network, celebrate, connect</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-time">07:00 PM onwards</div>
+            <div class="tl-event">Departure</div>
+            <div class="tl-note">Safe travels!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 2 -->
+      <div class="day-panel" id="day-panel-2">
+        <div class="day-header">
+          <h3>Day 2 — Monday, 17th August 2026</h3>
+          <p>Dress Code: Indian Formals</p>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="tl-time">08:00 AM – 10:30 AM</div>
+            <div class="tl-event">Committee Session 3</div>
+            <div class="tl-note">Continued deliberations, crisis updates (where applicable)</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-time">10:30 AM – 11:30 AM</div>
+            <div class="tl-event">Breakfast</div>
+            <div class="tl-note">Break and refreshments</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-time">11:30 AM – 02:00 PM</div>
+            <div class="tl-event">Committee Session 4</div>
+            <div class="tl-note">Draft resolution debates, amendments, and lobbying</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-time">02:00 PM – 03:00 PM</div>
+            <div class="tl-event">Lunch</div>
+            <div class="tl-note">Break</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-time">03:00 PM – 04:30 PM</div>
+            <div class="tl-event">Committee Session 5</div>
+            <div class="tl-note">Final voting procedures and resolution adoption</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-time">05:00 PM – 06:30 PM</div>
+            <div class="tl-event">🏆 Closing Ceremony & Awards</div>
+            <div class="tl-note">Best Delegate, High Commendation, and Special Mention awards</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-time">05:30 PM onwards</div>
+            <div class="tl-event">Departure</div>
+            <div class="tl-note">Farewell and safe travels to all delegates</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== REGISTRATION ====== -->
+  <section id="registration">
+    <div class="registration-wrap">
+      <div class="section-header reveal">
+        <div class="section-label">Join Us</div>
+        <h2 class="section-title">Registration Details</h2>
+        <p class="section-sub">Secure your seat at ChintelsMUN'26 — two days of diplomacy, debate, and unforgettable
+          experiences.</p>
+      </div>
+
+      <div class="reg-single">
+        <div class="reg-card reg-featured glass-card reveal">
+          <div class="reg-badge-top">✦ ChintelsMUN'26 — The Full Experience</div>
+          <div class="reg-card-header">
+            <div class="reg-icon">🌟</div>
+            <div class="reg-day">August 16 &amp; 17, 2026</div>
+            <div class="reg-date">The Chintels School, Kalyanpur, Kanpur</div>
+          </div>
+          <div class="reg-price">
+            <span class="reg-amount">₹1,700</span>
+            <span class="reg-per">per delegate · both days</span>
+          </div>
+          <ul class="reg-features">
+            <li>✓ All 5 Committee Sessions across 2 Days</li>
+            <li>✓ Grand Opening &amp; Closing Ceremony</li>
+            <li>✓ Breakfast &amp; Lunch — Both Days</li>
+            <li>✓ ✨ The Glow Gala — Exclusive Social Evening</li>
+            <li>✓ Best Delegate, High Commendation &amp; Special Mention Awards</li>
+            <li>✓ Certificate of Participation</li>
+          </ul>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQqLwWkjAQdmaqRqIgVZkNtDtDPHHWxP5byJvFpDgPiorR-g/viewform"
+            target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="reg-both-btn">Register Now</a>
+        </div>
+      </div>
+
+      <div class="reg-note glass-card reveal">
+        <div class="reg-note-icon">📋</div>
+        <div>
+          <strong>How to Register</strong>
+          <p>Click the <strong>Register Now</strong> button above to complete the official Delegate Registration Form.
+            For any questions or assistance, contact us at <a
+              href="mailto:chintelsmun26@gmail.com">chintelsmun26@gmail.com</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== VENUE ====== -->
+  <section id="venue">
     <div class="section-header reveal">
-      <div class="section-label">Conference Itinerary</div>
-      <h2 class="section-title">Tentative Schedule</h2>
-      <p class="section-sub">Two action-packed days of debate, diplomacy, and diplomacy at The Chintels School, Kalyanpur.</p>
+      <div class="section-label">The Venue</div>
+      <h2 class="section-title">The Chintels School, Kalyanpur</h2>
     </div>
 
-    <div class="day-tabs">
-      <button class="day-tab active" data-day="1" id="tab-day1">Day 1 — Aug 16</button>
-      <button class="day-tab" data-day="2" id="tab-day2">Day 2 — Aug 17</button>
-    </div>
-
-    <!-- Day 1 -->
-    <div class="day-panel active" id="day-panel-1">
-      <div class="day-header">
-        <h3>Day 1 — Sunday, 16th August 2026</h3>
-        <p>Dress Code: Western Formals</p>
-      </div>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="tl-time">08:00 AM – 09:00 AM</div>
-          <div class="tl-event">Breakfast & Registrations</div>
-          <div class="tl-note">Check-in, credential verification and networking</div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">09:00 AM – 10:45 AM</div>
-          <div class="tl-event">Opening Ceremony</div>
-          <div class="tl-note">Welcome addresses from the Secretariat, Principal, and Chairperson</div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">11:20 AM – 01:30 PM</div>
-          <div class="tl-event">Committee Session 1</div>
-          <div class="tl-note">Roll call, general speakers list, opening statements</div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">01:30 PM – 02:30 PM</div>
-          <div class="tl-event">Lunch</div>
-          <div class="tl-note">Networking opportunity for delegates</div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">02:30 PM – 05:30 PM</div>
-          <div class="tl-event">Committee Session 2</div>
-          <div class="tl-note">Moderated & unmoderated caucuses, working paper drafting</div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">05:30 PM – 06:45 PM</div>
-          <div class="tl-event">✨ Socials — The Glow Gala✨✨</div>
-          <div class="tl-note">Exclusive delegate social evening — network, celebrate, connect</div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">07:00 PM onwards</div>
-          <div class="tl-event">Departure</div>
-          <div class="tl-note">Safe travels!</div>
+    <div class="venue-hero-card glass-card reveal">
+      <div class="venue-image-wrapper">
+        <img src="assets/venue.jpg" alt="The Chintels School Kalyanpur Campus Venue" class="venue-img" loading="lazy" />
+        <div class="venue-img-overlay">
+          <span class="venue-badge">🏛️ Official Conference Campus</span>
+          <h3 class="venue-img-caption">The Chintels School — Kalyanpur, Kanpur</h3>
         </div>
       </div>
     </div>
 
-    <!-- Day 2 -->
-    <div class="day-panel" id="day-panel-2">
-      <div class="day-header">
-        <h3>Day 2 — Monday, 17th August 2026</h3>
-        <p>Dress Code: Indian Formals</p>
-      </div>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="tl-time">08:00 AM – 10:30 AM</div>
-          <div class="tl-event">Committee Session 3</div>
-          <div class="tl-note">Continued deliberations, crisis updates (where applicable)</div>
+    <div class="venue-grid">
+      <div class="venue-card glass-card reveal">
+        <div class="venue-name">The Chintels School</div>
+        <p class="venue-address">
+          <strong>Address:</strong><br>
+          Singhpur Road, Kalyanpur,<br>
+          Kanpur, Uttar Pradesh — 208017
+        </p>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px;">
+          Set amidst verdant greenery, beautifully landscaped gardens and a panoramic view of
+          luxuriant lawns, The Chintels School prides itself on its sophisticated infrastructure and
+          state-of-the-art amenities. The campus fosters intellect, sophistication, and
+          preparedness — splendid for fostering the diplomatic spirit of delegates.
+        </p>
+        <div class="venue-features">
+          <span class="venue-feature-pill">🏫 Modern Campus</span>
+          <span class="venue-feature-pill">🌿 Lush Lawns</span>
+          <span class="venue-feature-pill">❄️ Air-Conditioned Halls</span>
+          <span class="venue-feature-pill">🛡️ Secure Environment</span>
         </div>
-        <div class="timeline-item">
-          <div class="tl-time">10:30 AM – 11:30 AM</div>
-          <div class="tl-event">Breakfast</div>
-          <div class="tl-note">Break and refreshments</div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">11:30 AM – 02:00 PM</div>
-          <div class="tl-event">Committee Session 4</div>
-          <div class="tl-note">Draft resolution debates, amendments, and lobbying</div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">02:00 PM – 03:00 PM</div>
-          <div class="tl-event">Lunch</div>
-          <div class="tl-note">Break</div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">03:00 PM – 04:30 PM</div>
-          <div class="tl-event">Committee Session 5</div>
-          <div class="tl-note">Final voting procedures and resolution adoption</div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">05:00 PM – 06:30 PM</div>
-          <div class="tl-event">🏆 Closing Ceremony & Awards</div>
-          <div class="tl-note">Best Delegate, High Commendation, and Special Mention awards</div>
-        </div>
-        <div class="timeline-item">
-          <div class="tl-time">05:30 PM onwards</div>
-          <div class="tl-event">Departure</div>
-          <div class="tl-note">Farewell and safe travels to all delegates</div>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px;">
+          <a href="https://maps.google.com/?q=The+Chintels+School+Kalyanpur+Kanpur" target="_blank" rel="noopener"
+            class="btn btn-primary" id="directions-btn">Get Directions</a>
         </div>
       </div>
+      <div class="venue-map-placeholder reveal reveal-delay-1">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3570.0!2d80.2707!3d26.4899!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399c47a6b89e5a23%3A0xabc123!2sThe+Chintels+School%2C+Kalyanpur%2C+Kanpur!5e0!3m2!1sen!2sin!4v1234567890"
+          allowfullscreen="" loading="lazy" title="The Chintels School, Kalyanpur, Kanpur">
+        </iframe>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ====== REGISTRATION ====== -->
-<section id="registration">
-  <div class="registration-wrap">
-    <div class="section-header reveal">
-      <div class="section-label">Join Us</div>
-      <h2 class="section-title">Registration Details</h2>
-      <p class="section-sub">Secure your seat at ChintelsMUN'26 — two days of diplomacy, debate, and unforgettable experiences.</p>
+  <!-- ====== CONTACT ====== -->
+  <section id="contact">
+    <div class="contact-wrap">
+      <div class="section-header reveal">
+        <div class="section-label">Get In Touch</div>
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-sub">For any queries and details, feel free to reach out to any member of our team.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card glass-card reveal">
+          <div class="contact-person">Utkarsh Wadhawan</div>
+          <div class="contact-role">Secretary General</div>
+          <div class="contact-info">
+            <a href="tel:+919795946363">📞 +91 97959 46363</a>
+          </div>
+        </div>
+        <div class="contact-card glass-card reveal reveal-delay-1">
+          <div class="contact-person">Muskaan Rohra</div>
+          <div class="contact-role">Director General</div>
+          <div class="contact-info">
+            <a href="tel:+919194708169">📞 +91 91947 08169</a>
+          </div>
+        </div>
+        <div class="contact-card glass-card reveal reveal-delay-2">
+          <div class="contact-person">Kaushiki Tripathi</div>
+          <div class="contact-role">USG for Public Relations</div>
+          <div class="contact-info">
+            <a href="tel:+919336872282">📞 +91 93368 72282</a>
+          </div>
+        </div>
+        <div class="contact-card glass-card reveal reveal-delay-2">
+          <div class="contact-person">Vedika Puri</div>
+          <div class="contact-role">USG for Delegate Affairs</div>
+          <div class="contact-info">
+            <a href="tel:+918604651462">📞 +91 86046 51462</a>
+          </div>
+        </div>
+        <div class="contact-card glass-card reveal reveal-delay-3">
+          <div class="contact-person">Angad Rohira</div>
+          <div class="contact-role">USG for Marketing</div>
+          <div class="contact-info">
+            <a href="tel:+916387087751">📞 +91 63870 87751</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="email-box glass-card reveal">
+        <p>Official Email Address</p>
+        <a href="mailto:chintelsmun26@gmail.com">chintelsmun26@gmail.com</a>
+      </div>
     </div>
+  </section>
 
-    <div class="reg-single">
-      <div class="reg-card reg-featured glass-card reveal">
-        <div class="reg-badge-top">✦ ChintelsMUN'26 — The Full Experience</div>
-        <div class="reg-card-header">
-          <div class="reg-icon">🌟</div>
-          <div class="reg-day">August 16 &amp; 17, 2026</div>
-          <div class="reg-date">The Chintels School, Kalyanpur, Kanpur</div>
+  <!-- ====== FOOTER ====== -->
+  <footer id="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo-main" style="display: flex; align-items: center; gap: 12px;">
+          <img src="assets/logo.png" alt="ChintelsMUN'26 Logo"
+            style="width: 44px; height: 44px; object-fit: contain; filter: drop-shadow(0 0 10px rgba(230,184,0,0.5));" />
+          <span>ChintelsMUN'26</span>
         </div>
-        <div class="reg-price">
-          <span class="reg-amount">₹1,700</span>
-          <span class="reg-per">per delegate · both days</span>
-        </div>
-        <ul class="reg-features">
-          <li>✓ All 5 Committee Sessions across 2 Days</li>
-          <li>✓ Grand Opening &amp; Closing Ceremony</li>
-          <li>✓ Breakfast &amp; Lunch — Both Days</li>
-          <li>✓ ✨ The Glow Gala — Exclusive Social Evening</li>
-          <li>✓ Best Delegate, High Commendation &amp; Special Mention Awards</li>
-          <li>✓ Certificate of Participation</li>
+        <p style="margin-top: 10px;">The Second Edition of Chintels Model United Nations. Organised by The Chintels
+          School, Ratanlal Nagar, Kanpur.</p>
+        <p style="margin-top: 12px; font-size: 0.75rem; color: var(--text-muted);">Theme: Ekta · Akhandta · Vividhta</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#about">About Conference</a></li>
+          <li><a href="#committees">Committees</a></li>
+          <li><a href="#secretariat">Secretariat</a></li>
+          <li><a href="#schedule">Schedule</a></li>
+          <li><a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSfQqLwWkjAQdmaqRqIgVZkNtDtDPHHWxP5byJvFpDgPiorR-g/viewform"
+              target="_blank" rel="noopener noreferrer">Register Now</a></li>
+          <li><a href="#venue">Venue</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQqLwWkjAQdmaqRqIgVZkNtDtDPHHWxP5byJvFpDgPiorR-g/viewform" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="reg-both-btn">Register Now</a>
+      </div>
+      <div class="footer-col">
+        <h4>Committees</h4>
+        <ul>
+          <li><a href="#committees">UNSC-CTC</a></li>
+          <li><a href="#committees">CCC</a></li>
+          <li><a href="#committees">UNDP</a></li>
+          <li><a href="#committees">AIPPM</a></li>
+          <li><a href="#committees">UKHOC</a></li>
+          <li><a href="#committees">UNGA-DISEC</a></li>
+          <li><a href="#committees">ECOSOC</a></li>
+          <li><a href="#committees">ACHPR</a></li>
+          <li><a href="#committees">PMECS</a></li>
+          <li><a href="#committees">IPJ & IPP</a></li>
+        </ul>
       </div>
     </div>
+    <div class="footer-bottom">
+      <p>© 2026 ChintelsMUN | The Chintels School, Kanpur. All Rights Reserved.</p>
+      <p>chintelsmun26@gmail.com</p>
+    </div>
+  </footer>
 
-    <div class="reg-note glass-card reveal">
-      <div class="reg-note-icon">📋</div>
-      <div>
-        <strong>How to Register</strong>
-        <p>Click the <strong>Register Now</strong> button above to complete the official Delegate Registration Form. For any questions or assistance, contact us at <a href="mailto:chintelsmun26@gmail.com">chintelsmun26@gmail.com</a>.</p>
-      </div>
+  <!-- Committee Detail Modal -->
+  <div class="modal-overlay" id="committee-modal">
+    <div class="modal-box">
+      <button class="modal-close" id="modal-close-btn" aria-label="Close modal">✕</button>
+      <div id="modal-content"></div>
     </div>
   </div>
-</section>
 
-<!-- ====== VENUE ====== -->
-<section id="venue">
-  <div class="section-header reveal">
-    <div class="section-label">The Venue</div>
-    <h2 class="section-title">The Chintels School, Kalyanpur</h2>
-  </div>
-
-  <div class="venue-hero-card glass-card reveal">
-    <div class="venue-image-wrapper">
-      <img src="assets/venue.jpg" alt="The Chintels School Kalyanpur Campus Venue" class="venue-img" loading="lazy" />
-      <div class="venue-img-overlay">
-        <span class="venue-badge">🏛️ Official Conference Campus</span>
-        <h3 class="venue-img-caption">The Chintels School — Kalyanpur, Kanpur</h3>
-      </div>
-    </div>
-  </div>
-
-  <div class="venue-grid">
-    <div class="venue-card glass-card reveal">
-      <div class="venue-name">The Chintels School</div>
-      <p class="venue-address">
-        <strong>Address:</strong><br>
-        Singhpur Road, Kalyanpur,<br>
-        Kanpur, Uttar Pradesh — 208017
-      </p>
-      <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px;">
-        Set amidst verdant greenery, beautifully landscaped gardens and a panoramic view of 
-        luxuriant lawns, The Chintels School prides itself on its sophisticated infrastructure and 
-        state-of-the-art amenities. The campus fosters intellect, sophistication, and 
-        preparedness — splendid for fostering the diplomatic spirit of delegates.
-      </p>
-      <div class="venue-features">
-        <span class="venue-feature-pill">🏫 Modern Campus</span>
-        <span class="venue-feature-pill">🌿 Lush Lawns</span>
-        <span class="venue-feature-pill">❄️ Air-Conditioned Halls</span>
-        <span class="venue-feature-pill">🛡️ Secure Environment</span>
-      </div>
-      <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px;">
-        <a href="https://maps.google.com/?q=The+Chintels+School+Kalyanpur+Kanpur" target="_blank" rel="noopener" class="btn btn-primary" id="directions-btn">Get Directions</a>
-      </div>
-    </div>
-    <div class="venue-map-placeholder reveal reveal-delay-1">
-      <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3570.0!2d80.2707!3d26.4899!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399c47a6b89e5a23%3A0xabc123!2sThe+Chintels+School%2C+Kalyanpur%2C+Kanpur!5e0!3m2!1sen!2sin!4v1234567890" 
-        allowfullscreen="" 
-        loading="lazy" 
-        title="The Chintels School, Kalyanpur, Kanpur">
-      </iframe>
-    </div>
-  </div>
-</section>
-
-<!-- ====== CONTACT ====== -->
-<section id="contact">
-  <div class="contact-wrap">
-    <div class="section-header reveal">
-      <div class="section-label">Get In Touch</div>
-      <h2 class="section-title">Contact Us</h2>
-      <p class="section-sub">For any queries and details, feel free to reach out to any member of our team.</p>
-    </div>
-
-    <div class="contact-grid">
-      <div class="contact-card glass-card reveal">
-        <div class="contact-person">Utkarsh Wadhawan</div>
-        <div class="contact-role">Secretary General</div>
-        <div class="contact-info">
-          <a href="tel:+919795946363">📞 +91 97959 46363</a>
-        </div>
-      </div>
-      <div class="contact-card glass-card reveal reveal-delay-1">
-        <div class="contact-person">Muskaan Rohra</div>
-        <div class="contact-role">Director General</div>
-        <div class="contact-info">
-          <a href="tel:+919194708169">📞 +91 91947 08169</a>
-        </div>
-      </div>
-      <div class="contact-card glass-card reveal reveal-delay-2">
-        <div class="contact-person">Kaushiki Tripathi</div>
-        <div class="contact-role">USG for Public Relations</div>
-        <div class="contact-info">
-          <a href="tel:+919336872282">📞 +91 93368 72282</a>
-        </div>
-      </div>
-      <div class="contact-card glass-card reveal reveal-delay-2">
-        <div class="contact-person">Vedika Puri</div>
-        <div class="contact-role">USG for Delegate Affairs</div>
-        <div class="contact-info">
-          <a href="tel:+918604651462">📞 +91 86046 51462</a>
-        </div>
-      </div>
-      <div class="contact-card glass-card reveal reveal-delay-3">
-        <div class="contact-person">Angad Rohira</div>
-        <div class="contact-role">USG for Marketing</div>
-        <div class="contact-info">
-          <a href="tel:+916387087751">📞 +91 63870 87751</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="email-box glass-card reveal">
-      <p>Official Email Address</p>
-      <a href="mailto:chintelsmun26@gmail.com">chintelsmun26@gmail.com</a>
-    </div>
-  </div>
-</section>
-
-<!-- ====== FOOTER ====== -->
-<footer id="footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <div class="logo-main" style="display: flex; align-items: center; gap: 12px;">
-        <img src="assets/logo.png" alt="ChintelsMUN'26 Logo" style="width: 44px; height: 44px; object-fit: contain; filter: drop-shadow(0 0 10px rgba(230,184,0,0.5));" />
-        <span>ChintelsMUN'26</span>
-      </div>
-      <p style="margin-top: 10px;">The Second Edition of Chintels Model United Nations. Organised by The Chintels School, Ratanlal Nagar, Kanpur.</p>
-      <p style="margin-top: 12px; font-size: 0.75rem; color: var(--text-muted);">Theme: Ekta · Akhandta · Vividhta</p>
-    </div>
-    <div class="footer-col">
-      <h4>Quick Links</h4>
-      <ul>
-        <li><a href="#about">About Conference</a></li>
-        <li><a href="#committees">Committees</a></li>
-        <li><a href="#secretariat">Secretariat</a></li>
-        <li><a href="#schedule">Schedule</a></li>
-        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfQqLwWkjAQdmaqRqIgVZkNtDtDPHHWxP5byJvFpDgPiorR-g/viewform" target="_blank" rel="noopener noreferrer">Register Now</a></li>
-        <li><a href="#venue">Venue</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Committees</h4>
-      <ul>
-        <li><a href="#committees">UNSC-CTC</a></li>
-        <li><a href="#committees">CCC</a></li>
-        <li><a href="#committees">UNDP</a></li>
-        <li><a href="#committees">AIPPM</a></li>
-        <li><a href="#committees">UKHOC</a></li>
-        <li><a href="#committees">UNGA-DISEC</a></li>
-        <li><a href="#committees">ECOSOC</a></li>
-        <li><a href="#committees">ACHPR</a></li>
-        <li><a href="#committees">PMECS</a></li>
-        <li><a href="#committees">IPJ & IPP</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2026 ChintelsMUN | The Chintels School, Kanpur. All Rights Reserved.</p>
-    <p>chintelsmun26@gmail.com</p>
-  </div>
-</footer>
-
-<!-- Committee Detail Modal -->
-<div class="modal-overlay" id="committee-modal">
-  <div class="modal-box">
-    <button class="modal-close" id="modal-close-btn" aria-label="Close modal">✕</button>
-    <div id="modal-content"></div>
-  </div>
-</div>
-
-<script src="js/data.js"></script>
-<script src="js/main.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
 </body>
+
 </html>

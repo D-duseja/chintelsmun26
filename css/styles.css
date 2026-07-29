@@ -569,20 +569,28 @@ ul { list-style: none; }
 .hamburger {
   display: none;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 5px;
   cursor: pointer;
-  padding: 6px;
+  padding: 8px;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent;
 }
 .hamburger span {
   display: block;
-  width: 24px; height: 2px;
-  background: var(--text-primary);
+  width: 24px;
+  height: 2.5px;
+  background: var(--gold-bright) !important;
   border-radius: 2px;
   transition: all var(--t-fast);
 }
-.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
 
 /* ==========================================
    HERO
@@ -807,6 +815,10 @@ ul { list-style: none; }
   display: flex;
   align-items: center;
   gap: 12px;
+  text-align: left !important;
+}
+.info-card > div {
+  text-align: left !important;
 }
 .info-card .ic-icon {
   font-size: 1.4rem;
@@ -824,11 +836,13 @@ ul { list-style: none; }
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 3px;
+  text-align: left !important;
 }
 .info-card .ic-val {
   font-weight: 600;
   font-size: 0.88rem;
   color: var(--text-primary);
+  text-align: left !important;
 }
 
 @keyframes fade-up {
