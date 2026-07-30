@@ -305,6 +305,6 @@ const SECRETARIAT = [
   { name: 'Vedika Puri', role: 'USG for Delegate Affairs', initials: 'VP' },
   { name: 'Kangana Yadav', role: 'USG for Data Management', initials: 'KY' },
   { name: 'Angad Rohira', role: 'USG for Marketing', initials: 'AR' },
-  { name: 'Kaushiki Tripathi', role: 'USG for Public Relations', initials: 'KT' },
   { name: 'Amol Khare', role: 'USG for Conference Management', initials: 'AK' },
+  { name: 'Kaushiki Tripathi', role: 'USG for Public Relations', initials: 'KT' },
 ];

@@ -1183,13 +1183,18 @@ ul { list-style: none; }
 }
 
 .secretariat-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 24px;
 }
 .sec-card {
+  flex: 0 0 calc(25% - 18px);
+  min-width: 220px;
+  max-width: 270px;
   padding: 28px 20px;
   text-align: center;
+  box-sizing: border-box;
 }
 .sec-avatar {
   width: 80px; height: 80px;
@@ -2091,13 +2096,14 @@ ul { list-style: none; }
   .stat-divider { display: none; }
   .footer-inner { grid-template-columns: 1fr; }
   .hero-info-cards { grid-template-columns: 1fr 1fr; }
-  .committees-grid { grid-template-columns: 1fr; }
-  .secretariat-grid { grid-template-columns: repeat(2, 1fr); }
+  .secretariat-grid { gap: 16px; }
+  .sec-card { flex: 0 0 calc(50% - 12px); min-width: 140px; }
 }
 
 @media (max-width: 480px) {
   .countdown-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-info-cards { grid-template-columns: 1fr; }
-  .secretariat-grid { grid-template-columns: 1fr 1fr; }
+  .secretariat-grid { gap: 12px; }
+  .sec-card { flex: 0 0 calc(50% - 8px); min-width: 130px; padding: 20px 12px; }
   .reg-note { flex-direction: column; gap: 12px; }
 }
