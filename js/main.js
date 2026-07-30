@@ -26,19 +26,19 @@
     function resize() { ic.width = window.innerWidth; ic.height = window.innerHeight; }
     resize();
     window.addEventListener("resize", resize);
-    for (var i = 0; i < 95; i++) {
+    for (var i = 0; i < 70; i++) {
       pts.push({
         x: Math.random()*window.innerWidth, y: Math.random()*window.innerHeight,
-        r: Math.random()*2.4+0.6, vx:(Math.random()-0.5)*0.5, vy:(Math.random()-0.5)*0.5,
-        alpha:Math.random()*0.55+0.35, color:Math.random()>0.5?"255,215,0":"201,187,234"
+        r: Math.random()*1.8+0.4, vx:(Math.random()-0.5)*0.4, vy:(Math.random()-0.5)*0.4,
+        alpha:Math.random()*0.5+0.15, color:Math.random()>0.5?"230,184,0":"139,114,190"
       });
     }
     function draw() {
       ictx.clearRect(0,0,ic.width,ic.height);
       for (var a=0;a<pts.length;a++) for (var b=a+1;b<pts.length;b++) {
         var dx=pts[a].x-pts[b].x, dy=pts[a].y-pts[b].y, d=Math.sqrt(dx*dx+dy*dy);
-        if (d<130) { ictx.beginPath(); ictx.strokeStyle="rgba(230,184,0,"+(0.18*(1-d/130))+")";
-          ictx.lineWidth=0.7; ictx.moveTo(pts[a].x,pts[a].y); ictx.lineTo(pts[b].x,pts[b].y); ictx.stroke(); }
+        if (d<120) { ictx.beginPath(); ictx.strokeStyle="rgba(139,114,190,"+(0.08*(1-d/120))+")";
+          ictx.lineWidth=0.5; ictx.moveTo(pts[a].x,pts[a].y); ictx.lineTo(pts[b].x,pts[b].y); ictx.stroke(); }
       }
       for (var j=0;j<pts.length;j++) {
         var p=pts[j]; p.x+=p.vx; p.y+=p.vy;
@@ -477,7 +477,8 @@ function openModal(id) {
       <div style="display: flex; gap: 24px; flex-wrap: wrap; margin-top: 14px;">
         <div>
           <span style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; display: block;">Format</span>
-          <span style="font-size: 0.88rem; font-weight: 700; color: var(--white);">${c.typeLabel}</span>
+          <span style="font-size: 0.88rem; font-weight: 700; color: var(--white);">${c.typeLabel.trim()}</span>
+          ${c.grade ? `<span style="font-size: 0.78rem; font-weight: 600; color: var(--gold-bright); display: block; margin-top: 2px;">${c.grade}</span>` : ''}
         </div>
         <div>
           <span style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; display: block;">Target Experience</span>
