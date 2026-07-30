@@ -9,7 +9,7 @@ const COMMITTEES = [
     abbr: 'UNSC-CTC',
     name: 'United Nations Security Council — Counter-Terrorism Committee',
     type: 'general',
-    typeLabel: 'UN Body',
+    typeLabel: 'UN Committee',
     level: 'Advanced',
     agenda: 'Examining the rising threat of extremist attacks on critical infrastructure in the Sahel and West African corridor, with special emphasis on energy security, maritime trade, cyber-physical threats, unmanned aerial systems (UAS), and regional security coordination.',
     about: 'Established pursuant to Security Council Resolution 1373 (2001) in the wake of the September 11 terrorist attacks, the Counter-Terrorism Committee (CTC) works to bolster the capability of UN Member States to prevent terrorist acts within their borders and across regions. Operating under Chapter VII mandate powers, the CTC conducts country assessments, facilitates technical assistance, and monitors international counter-terrorism compliance.',
@@ -26,8 +26,7 @@ const COMMITTEES = [
       documentation: 'Draft Security Council Resolutions (requires 1 Mover, 2 Seconders), Presidential Statements (PRST).'
     },
     board: [
-      { role: 'Chairperson', name: 'Shwetank Upadhyay' },
-      { role: 'Vice-Chairperson', name: 'Chaitanya Rohra' },
+      { role: 'Chairperson', name: 'Chaitanya Rohra' },
     ]
   },
   {
@@ -36,9 +35,9 @@ const COMMITTEES = [
     name: 'Continuous Crisis Committee',
     type: 'crisis',
     typeLabel: 'Crisis',
-    level: 'Crisis / Expert',
+    level: 'Advanced',
     agenda: '"Classified" — Details to be revealed at the conference. Prepare for the unexpected.',
-    about: 'The Classified Crisis Committee is an intense, fast-paced environment operating in dynamic real-time. Delegates assume high-stakes geopolitical roles—such as heads of state, military commanders, intelligence directors, and diplomats—navigating rapid crisis developments, covert operations, and immediate decision-making. Information is compartmentalized and crisis updates will break dynamically throughout the sessions.',
+    about: 'The Continuous Crisis Committee is an intense, fast-paced environment operating in dynamic real-time. Delegates assume high-stakes geopolitical roles—such as heads of state, military commanders, intelligence directors, and diplomats—navigating rapid crisis developments, covert operations, and immediate decision-making. Information is compartmentalized and crisis updates will break dynamically throughout the sessions.',
     agendaDetail: [
       'Top-Secret Scenario: Full intelligence dossier disclosed upon committee session initiation.',
       'Real-Time Crisis Updates: Responding to breaking geopolitical emergencies, cyber warfare, and intelligence leaks.',
@@ -141,7 +140,7 @@ const COMMITTEES = [
     abbr: 'UNGA-DISEC',
     name: 'United Nations General Assembly — Disarmament & International Security Committee',
     type: 'general',
-    typeLabel: 'UN Body',
+    typeLabel: 'UN Committee',
     level: 'Intermediate',
     agenda: 'Deliberating upon the proliferation of unmanned weapons systems and precision-strike capabilities across West Asia, with special emphasis on drone warfare, ballistic and cruise missile proliferation, proxy-assisted arms transfers, threats to maritime security in the Persian Gulf and Red Sea corridor, and the adequacy of existing international arms control and export regulation frameworks.',
     about: 'The First Committee of the UN General Assembly (DISEC) deals with disarmament, global challenges, and threats to peace that affect the international community. DISEC works to establish international regulations on armaments, mitigate international security crises, and promote global stability through treaty frameworks.',
@@ -167,7 +166,7 @@ const COMMITTEES = [
     abbr: 'ECOSOC',
     name: 'Economic and Social Council',
     type: 'general',
-    typeLabel: 'UN Body',
+    typeLabel: 'UN Committee',
     level: 'Intermediate',
     agenda: 'Addressing the economic repercussions of instability across major maritime and energy corridors in West Asia, with special emphasis on fuel inflation, supply chain disruptions, and energy dependency in emerging economies.',
     about: 'The Economic and Social Council (ECOSOC) is one of the six principal organs of the United Nations, responsible for coordinating economic, social, and environmental policy matters. ECOSOC brings together global economic planners, finance ministers, and multilateral financial institutions (IMF, World Bank) to solve complex trade and development crises.',
