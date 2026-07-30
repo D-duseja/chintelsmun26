@@ -1555,15 +1555,13 @@ ul { list-style: none; }
 }
 .registration-wrap { max-width: 1100px; margin: 0 auto; }
 
-.reg-single {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 40px;
-}
-
-.reg-single .reg-card {
-  width: 100%;
-  max-width: 560px;
+.reg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  max-width: 1000px;
+  margin: 0 auto 40px;
+  align-items: stretch;
 }
 
 .reg-card {
@@ -1572,15 +1570,17 @@ ul { list-style: none; }
   overflow: hidden;
   text-align: center;
   transition: all var(--t-med) var(--ease);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .reg-featured {
   border-color: rgba(230, 184, 0, 0.5) !important;
   box-shadow: 0 0 40px rgba(230, 184, 0, 0.15);
-  transform: scale(1.03);
 }
 .reg-featured:hover {
-  transform: scale(1.05) translateY(-4px) !important;
+  transform: translateY(-5px) !important;
 }
 
 .reg-badge-top {
@@ -1640,6 +1640,47 @@ ul { list-style: none; }
   color: var(--text-muted);
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+.outstation-fee-table {
+  background: rgba(15, 10, 30, 0.5);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin: 18px 0 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+.fee-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed rgba(201, 187, 234, 0.15);
+}
+.fee-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.fee-particular {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+.fee-val {
+  color: var(--gold-bright);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.92rem;
+  white-space: nowrap;
+}
+.fee-val small {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-weight: 400;
 }
 
 .reg-features {

@@ -542,7 +542,7 @@ function openModal(id) {
 
     <!-- Modal Footer Actions -->
     <div class="modal-footer-actions">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQqLwWkjAQdmaqRqIgVZkNtDtDPHHWxP5byJvFpDgPiorR-g/viewform" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 10px 24px; font-size: 0.8rem;">
+      <a href="#registration" onclick="closeModal()" class="btn btn-primary" style="padding: 10px 24px; font-size: 0.8rem;">
         Register for ${c.abbr} →
       </a>
       <button class="btn btn-ghost" style="padding: 10px 22px; font-size: 0.8rem;" onclick="closeModal()">

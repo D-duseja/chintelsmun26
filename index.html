@@ -84,8 +84,7 @@
     <div class="nav-cta">
       <a href="assets/brochure.pdf" download="ChintelsMUN26-Brochure.pdf" class="btn btn-outline"
         id="nav-brochure-btn">⬇ Brochure</a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQqLwWkjAQdmaqRqIgVZkNtDtDPHHWxP5byJvFpDgPiorR-g/viewform"
-        target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="nav-register-btn">Register Now</a>
+      <a href="#registration" class="btn btn-primary" id="nav-register-btn">Register Now</a>
       <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -101,8 +100,7 @@
     <a href="#registration" class="mm-link">Register</a>
     <a href="#venue" class="mm-link">Venue</a>
     <a href="#contact" class="mm-link">Contact</a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQqLwWkjAQdmaqRqIgVZkNtDtDPHHWxP5byJvFpDgPiorR-g/viewform"
-      target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="mobile-register-btn">Register Now</a>
+    <a href="#registration" class="btn btn-primary" id="mobile-register-btn" onclick="closeMobileMenu()">Register Now</a>
   </div>
 
   <!-- ====== HERO ====== -->
@@ -428,38 +426,84 @@
           experiences.</p>
       </div>
 
-      <div class="reg-single">
+      <div class="reg-grid">
+        <!-- Local Delegates Slab -->
         <div class="reg-card reg-featured glass-card reveal">
-          <div class="reg-badge-top">✦ ChintelsMUN'26 — The Full Experience</div>
-          <div class="reg-card-header">
-            <div class="reg-icon">🌟</div>
-            <div class="reg-day">August 16 &amp; 17, 2026</div>
-            <div class="reg-date">The Chintels School, Kalyanpur, Kanpur</div>
+          <div class="reg-badge-top">✦ Local Delegates (Kanpur)</div>
+          <div>
+            <div class="reg-card-header">
+              <div class="reg-icon">🌟</div>
+              <div class="reg-day">Local Delegates</div>
+              <div class="reg-date">August 16 &amp; 17, 2026 &bull; Kanpur</div>
+            </div>
+            <div class="reg-price">
+              <span class="reg-amount">₹1,700</span>
+              <span class="reg-per">per delegate · both days</span>
+            </div>
+            <ul class="reg-features">
+              <li>✓ All 5 Committee Sessions across 2 Days</li>
+              <li>✓ Grand Opening &amp; Closing Ceremony</li>
+              <li>✓ Breakfast &amp; Lunch — Both Days</li>
+              <li>✓ ✨ The Glow Gala — Exclusive Social Evening</li>
+              <li>✓ Best Delegate, High Commendation &amp; Special Mention Awards</li>
+              <li>✓ Certificate &amp; Official Delegate Kit</li>
+            </ul>
           </div>
-          <div class="reg-price">
-            <span class="reg-amount">₹1,700</span>
-            <span class="reg-per">per delegate · both days</span>
-          </div>
-          <ul class="reg-features">
-            <li>✓ All 5 Committee Sessions across 2 Days</li>
-            <li>✓ Grand Opening &amp; Closing Ceremony</li>
-            <li>✓ Breakfast &amp; Lunch — Both Days</li>
-            <li>✓ ✨ The Glow Gala — Exclusive Social Evening</li>
-            <li>✓ Best Delegate, High Commendation &amp; Special Mention Awards</li>
-            <li>✓ Certificate of Participation</li>
-          </ul>
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQqLwWkjAQdmaqRqIgVZkNtDtDPHHWxP5byJvFpDgPiorR-g/viewform"
-            target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="reg-both-btn">Register Now</a>
+            target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="reg-local-btn">Register (Local Delegate)</a>
+        </div>
+
+        <!-- Outstation Delegates Slab -->
+        <div class="reg-card reg-featured glass-card reveal reveal-delay-1">
+          <div class="reg-badge-top">✦ Outstation Delegates</div>
+          <div>
+            <div class="reg-card-header">
+              <div class="reg-icon">✈️</div>
+              <div class="reg-day">Outstation Delegates</div>
+              <div class="reg-date">August 16 &amp; 17, 2026 &bull; Accommodation &amp; Travel</div>
+            </div>
+            <div class="reg-price">
+              <span class="reg-amount">₹7,000</span>
+              <span class="reg-per">Delegate Reg + 2 Nights Accommodation</span>
+            </div>
+
+            <!-- Fee Particulars Table -->
+            <div class="outstation-fee-table">
+              <div class="fee-row">
+                <span class="fee-particular">Delegate Reg + 2 Nights Stay</span>
+                <span class="fee-val">₹7,000 <small>/ delegate</small></span>
+              </div>
+              <div class="fee-row">
+                <span class="fee-particular">School Delegation Registration</span>
+                <span class="fee-val">₹3,000 <small>/ school</small></span>
+              </div>
+              <div class="fee-row">
+                <span class="fee-particular">Additional Accommodation</span>
+                <span class="fee-val">₹2,100 <small>/ delegate</small></span>
+              </div>
+            </div>
+
+            <ul class="reg-features">
+              <li>✓ All 5 Committee Sessions across 2 Days</li>
+              <li>✓ 2 Nights Stay &amp; Accommodation Included</li>
+              <li>✓ Food &amp; Dining Provisions — Both Days</li>
+              <li>✓ ✨ The Glow Gala — Exclusive Social Evening</li>
+              <li>✓ Best Delegate, High Commendation &amp; Special Mention Awards</li>
+              <li>✓ Official Certificate &amp; Delegate Kit</li>
+            </ul>
+          </div>
+          <a href="https://forms.gle/HjHqaStY74oZM4Wi9"
+            target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="reg-outstation-btn">Register (Outstation Delegate)</a>
         </div>
       </div>
 
       <div class="reg-note glass-card reveal">
         <div class="reg-note-icon">📋</div>
         <div>
-          <strong>How to Register</strong>
-          <p>Click the <strong>Register Now</strong> button above to complete the official Delegate Registration Form.
-            For any questions or assistance, contact us at <a
-              href="mailto:chintelsmun26@gmail.com">chintelsmun26@gmail.com</a>.</p>
+          <strong>Registration &amp; Accommodation Info</strong>
+          <p>Choose your registration slab above (Local or Outstation) and click the respective <strong>Register</strong> button to open the official form.
+            For outstation delegates: Delegate Registration + 2 Nights Accommodation is <strong>₹7,000</strong> per delegate, School Delegation Registration is <strong>₹3,000</strong> per school, and Additional Accommodation is <strong>₹2,100</strong> per delegate.
+            For assistance, contact Secretary-General (+91 97959 46363), USG for Delegate Affairs (+91 86046 51462), or email <a href="mailto:chintelsmun26@gmail.com">chintelsmun26@gmail.com</a>.</p>
         </div>
       </div>
     </div>
@@ -590,9 +634,7 @@
           <li><a href="#committees">Committees</a></li>
           <li><a href="#secretariat">Secretariat</a></li>
           <li><a href="#schedule">Schedule</a></li>
-          <li><a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSfQqLwWkjAQdmaqRqIgVZkNtDtDPHHWxP5byJvFpDgPiorR-g/viewform"
-              target="_blank" rel="noopener noreferrer">Register Now</a></li>
+          <li><a href="#registration">Register Now</a></li>
           <li><a href="#venue">Venue</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
