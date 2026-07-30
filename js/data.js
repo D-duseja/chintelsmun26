@@ -33,7 +33,7 @@ const COMMITTEES = [
   {
     id: 'ccc',
     abbr: 'CCC',
-    name: 'Classified Crisis Committee',
+    name: 'Continuous Crisis Committee',
     type: 'crisis',
     typeLabel: 'Crisis',
     level: 'Crisis / Expert',
@@ -139,7 +139,7 @@ const COMMITTEES = [
   {
     id: 'unga-disec',
     abbr: 'UNGA-DISEC',
-    name: 'United Nations General Assembly — Disarmament & International Security',
+    name: 'United Nations General Assembly — Disarmament & International Security Committee',
     type: 'general',
     typeLabel: 'UN Body',
     level: 'Intermediate',
@@ -219,7 +219,7 @@ const COMMITTEES = [
   {
     id: 'pmecs',
     abbr: 'PMECS',
-    name: 'Post-Modern Emergency Crisis Simulation',
+    name: "Prime Minister's Emergency Cabinet Session",
     type: 'crisis',
     typeLabel: 'Crisis',
     level: 'Advanced / Historical Crisis',
